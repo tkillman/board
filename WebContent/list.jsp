@@ -50,10 +50,8 @@
 		if (totalCount % countList > 0) {
 
 			totalPage++; //10
-
 		}
 	
-		
 		int pageNum;
 		
 		pageNum=1;
@@ -62,18 +60,25 @@
 			pageNum= Integer.parseInt(request.getParameter("page"));
 		}
 		
-		System.out.println("페이지 클릭 값으로 pageNum값을 설정 :" +Integer.toString(pageNum));
+		//System.out.println("페이지 클릭 값으로 pageNum값을 설정 :" +Integer.toString(pageNum));
 		
 		int countPage = 5;
 		
 		
+		//System.out.println("pageNum의 값" +Integer.toString(pageNum));
 		
-		int startPage = ((pageNum) -1 / countPage) * countPage+1;
+		int startPage = (( pageNum -1 ) / countPage) * countPage +1;
+		
 
+		//System.out.println("startPage의 값" +Integer.toString(startPage));
+		
+		
 		int endPage = startPage + countPage - 1;
+		//System.out.println("endPage의 값" +Integer.toString(endPage));
 		
-		
-		
+		if(endPage>totalPage){
+			endPage=totalPage;
+		}
 		
 	%>
 
@@ -117,76 +122,51 @@
 					
 				if (startPage > 1) {
 
-						out.print("<a>처음</a>");
+					out.print("<a href=list.do?page="+(startPage-1)+">" + "<이전>" +"</a>");
 
 					}
 
-				if (endPage > totalPage) {
-
-					endPage = totalPage;
-
-				}
-
+			
 				%>
 			</td>
 			
 			<td colspan="3" id='cli'>
 				
 				<%
-					
-					if(startPage!=1 && startPage>1){
-					
-					out.print("...");
-					}
-					
-				
-					if(startPage>endPage){ //맨 마지막 페이지를 눌렀을 때 가만히 표시하도록
+				// CountPage ui 변경 부분
 						
-						for (int iCount = startPage-countPage; iCount <= endPage; iCount++) {
-							
-							
-							out.print("<a href=list.do?page=" + iCount +">" + iCount + "<a>");
-						
-							}
-						
-					}	
-					
-					else{
+						if(startPage>1){
+							out.print("...");
+						}
 						for (int iCount = startPage; iCount <= endPage; iCount++) {
-							
-						
 							out.print("<a href=list.do?page=" + iCount +">" + iCount + "</a>");
-							
 							}
 						
-					}
-					
-					if(endPage<totalPage){
-						
-						out.print("<a href=list.do?page=" + (endPage+1) +">"+"..."+"</a>");
-					}
-				
+						if(totalPage>endPage){
+							out.print("...");
+						}
 				
 				
 				%>
+				
 			</td>
 			<td>
 				<%
-					if (pageNum > 1) {
-
-						out.print("<a>이전</a>");
-
+				
+					if(totalPage>endPage){
+					
+						out.print("<a href=list.do?page="+(endPage+1)+">" + "<다음>" +"</a>");
+					
 					}
+				
 				%>
+				
 			</td>
 
 
 		</tr>
 
 	</table>
-
-
-
 
 </body>
 </html>

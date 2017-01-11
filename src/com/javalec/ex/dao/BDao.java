@@ -74,6 +74,7 @@ public class BDao {
 		
 	}
 	
+	
 	public ArrayList<BDto> list() {
 		
 		ArrayList<BDto> dtos = new ArrayList<BDto>();
@@ -84,15 +85,12 @@ public class BDao {
 		try {
 			connection = dataSource.getConnection();
 			
-		String query = "select bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from(select rownum as rnum ,bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from ( select bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from mvc_board order by bDate desc)V )T where T.rnum between ? and ?";
+			String query = "select bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from(select rownum as rnum ,bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from ( select bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from mvc_board order by bDate desc)V )T where T.rnum between ? and ?";
 			preparedStatement = connection.prepareStatement(query);
-			
-			
 			
 			System.out.println("세션에서 얻은 값" + request.getParameter("page"));
 			
 			int i=1;
-			
 			
 			try {
 				i = Integer.parseInt(request.getParameter("page"));
@@ -102,10 +100,6 @@ public class BDao {
 				i=1;
 			}
 				
-			
-			
-			
-			
 			preparedStatement.setInt(1, (i-1)*5+1);
 			preparedStatement.setInt(2, (i)*5);
 			
