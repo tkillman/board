@@ -139,7 +139,7 @@
 							out.print("...");
 						}
 						for (int iCount = startPage; iCount <= endPage; iCount++) {
-							out.print("<a href=list.do?page=" + iCount +">" + iCount + "</a>");
+							out.print("<a href=list.do?page=" + iCount +">" + iCount +"\t"+ "</a>");
 							}
 						
 						if(totalPage>endPage){
