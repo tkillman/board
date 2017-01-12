@@ -18,6 +18,8 @@ public class BContentCommand implements BCommand {
 		
 		request.setAttribute("content_view", dto);
 		
+		
+		
 	}
 
 }

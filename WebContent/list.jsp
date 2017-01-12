@@ -18,6 +18,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
 	<%
 		Connection con;
 		PreparedStatement pstmt;
@@ -84,7 +85,7 @@
 
 
 
-	<table width="500" cellpadding="0" cellspacing="0" border="1">
+	<table width="500" cellpadding="0" cellspacing="0" border="1" align="center" >
 
 		<tr>
 			<td>번호</td>
@@ -152,13 +153,9 @@
 			</td>
 			<td>
 				<%
-				
 					if(totalPage>endPage){
-					
-						out.print("<a href=list.do?page="+(endPage+1)+">" + "<다음>" +"</a>");
-					
+						out.print("<a href=list.do?page="+(endPage+1)+">" + "<다음>" +"</a>");			
 					}
-				
 				%>
 				
 			</td>

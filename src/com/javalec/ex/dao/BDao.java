@@ -59,6 +59,7 @@ public class BDao {
 			preparedStatement.setString(2, bTitle);
 			preparedStatement.setString(3, bContent);
 			int rn = preparedStatement.executeUpdate();
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -169,6 +170,7 @@ public class BDao {
 				
 				dto = new BDto(bId, bName, bTitle, bContent, bDate, bHit, bGroup, bStep, bIndent);
 			}
+			
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -323,6 +325,7 @@ public class BDao {
 		}
 		
 	}
+	
 	
 	private void replyShape( String strGroup, String strStep) {
 		// TODO Auto-generated method stub

@@ -1,0 +1,35 @@
+totalCount 전체 게시물의 수
+
+countList 한 페이지에 표시될 게시물의 수
+
+countPage 한 화면에 보이는 페이지 숫자
+
+pageNum 현재 페이지 번호
+
+startPage 한 화면에 보이는 페이지 첫번째
+		숫자
+
+
+endPage 한 화면에 보이는 페이지 마지막
+		숫자
+
+
+
+47개 9페이지 +2개 -> 총 10페이지
+
+-------------1페이지를 누른 경우
+
+totalPage 10
+countPage 5
+startPage 1
+endPage 5
+
+
+-------------5페이지를 누른 경우
+totalPage 10
+countPage 5
+startPage 6
+endPage	10
+
+
+
