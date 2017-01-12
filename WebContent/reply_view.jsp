@@ -10,7 +10,7 @@
 
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 		<form action="reply.do" method="post">
-			<input type="hidden" name="bId" value="${reply_view.bId}">
+			<input type="hidden"bId" value="${reply_view.bId}">
 			<input type="hidden" name="bGroup" value="${reply_view.bGroup}">
 			<input type="hidden" name="bStep" value="${reply_view.bStep}">
 			<input type="hidden" name="bIndent" value="${reply_view.bIndent}">
