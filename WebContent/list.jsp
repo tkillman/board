@@ -43,7 +43,7 @@
 			// System.out.println(Integer.toString(result));
 		}
 
-		int countList = 5;
+		int countList = 30;
 
 		int totalPage = totalCount / countList;
 
@@ -57,6 +57,7 @@
 		
 		pageNum=1;
 		
+		//바뀐 페이지번호
 		if(request.getParameter("page")!=null){
 			pageNum= Integer.parseInt(request.getParameter("page"));
 		}
@@ -78,7 +79,9 @@
 		//System.out.println("endPage의 값" +Integer.toString(endPage));
 		
 		if(endPage>totalPage){
+			
 			endPage=totalPage;
+			
 		}
 		
 	%>
@@ -111,10 +114,7 @@
 
 
 		<tr>
-
 			<td colspan="5"><a href="write_view.do">글작성</a></td>
-
-
 		</tr>
 
 		<tr>
@@ -140,8 +140,13 @@
 							out.print("...");
 						}
 						for (int iCount = startPage; iCount <= endPage; iCount++) {
-							out.print("<a href=list.do?page=" + iCount +">" + iCount +"\t"+ "</a>");
-							}
+							
+							if(iCount==pageNum){
+							out.print("<a href=list.do?page=" + iCount +">" + "<b>"+iCount+"</b>"+"\t"+ "</a>");
+							}else{
+							out.print("<a href=list.do?page=" + iCount +">" + iCount +"\t"+ "</a>");}
+							
+						}
 						
 						if(totalPage>endPage){
 							out.print("...");

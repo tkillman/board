@@ -14,8 +14,8 @@ public class BListCommand implements BCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		
-		BDao dao = new BDao(request);
-		ArrayList<BDto> dtos = dao.list();
+		BDao dao = new BDao();
+		ArrayList<BDto> dtos = dao.list(request);
 		request.setAttribute("list", dtos);
 		
 	}

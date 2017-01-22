@@ -17,11 +17,10 @@ import com.javalec.ex.dto.BDto;
 public class BDao {
 
 	DataSource dataSource;
-	HttpServletRequest request;
 	
 	public BDao() {
 		// TODO Auto-generated constructor stub
-		this.request = request;
+		
 		
 		try {
 			Context context = new InitialContext();
@@ -32,18 +31,6 @@ public class BDao {
 		}
 	}
 	
-	public BDao(HttpServletRequest request) {
-		// TODO Auto-generated constructor stub
-		this.request = request;
-		
-		try {
-			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-	}
 	
 	public void write(String bName, String bTitle, String bContent) {
 		// TODO Auto-generated method stub
@@ -76,7 +63,7 @@ public class BDao {
 	}
 	
 	
-	public ArrayList<BDto> list() {
+	public ArrayList<BDto> list(HttpServletRequest request) {
 		
 		ArrayList<BDto> dtos = new ArrayList<BDto>();
 		Connection connection = null;
@@ -86,7 +73,8 @@ public class BDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from(select rownum as rnum ,bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from ( select bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from mvc_board order by bDate desc)V )T where T.rnum between ? and ?";
+			String query = "select bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from(select rownum as rnum ,bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from ( select bId,bName,bTitle,bContent,bDate,bHit,bGroup,bStep,bIndent from mvc_board order by bGroup desc, bStep asc)V )T where T.rnum between ? and ?";
+			//String query = "select bId, bName, bTitle, bContent, bDate, bHit, bGroup, bStep, bIndent from mvc_board order by bGroup desc, bStep asc";
 			preparedStatement = connection.prepareStatement(query);
 			
 			System.out.println("세션에서 얻은 값" + request.getParameter("page"));
@@ -94,6 +82,7 @@ public class BDao {
 			int i=1;
 			
 			try {
+				
 				i = Integer.parseInt(request.getParameter("page"));
 				
 			} catch (NumberFormatException e) {
@@ -135,7 +124,9 @@ public class BDao {
 				e2.printStackTrace();
 			}
 		}
+		
 		return dtos;
+		
 	}
 	
 	public BDto contentView(String strID) {
@@ -323,7 +314,6 @@ public class BDao {
 				e2.printStackTrace();
 			}
 		}
-		
 	}
 	
 	
